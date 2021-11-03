@@ -1,0 +1,9 @@
+#,id,cost,cardname,amount
+attack,0,1,挥击,2
+attack,1,1,重挥击,3
+#,id,cost,cardname,amount
+defend,2,0,格挡,50
+defend,3,0,格挡,100
+#,id,cost,cardname,effect
+skill,4,1,移动,向指定方向移动，并且可以再使用一张卡牌
+

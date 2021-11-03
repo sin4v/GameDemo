@@ -1,0 +1,4 @@
+#,id,name,hp,scp,
+monster,0,wolf,50,10,
+moves,0,attack_1,*,attack_0,*,attack_1,
+moves,0,attack_1,*,skill_0,*,attack_1,

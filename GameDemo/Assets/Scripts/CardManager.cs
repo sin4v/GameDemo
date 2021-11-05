@@ -10,6 +10,9 @@ public class CardManager : MonoSingleton<CardManager>
     public bool isUsedCard;
     public bool isAbleUseCard = false;
 
+    public Animator anime;
+    public Animator e_anime;
+
     private void Awake() 
     {
         Instance = this;
@@ -22,6 +25,9 @@ public class CardManager : MonoSingleton<CardManager>
             BattleManager.Instance.playerCurrentCosts -= ReturnAttackCard(_card).Cost;
             Player.Instance.Attack(ReturnAttackCard(_card).Amount);
             isUsedCard = true;
+            anime.SetBool("Attacked",true);
+            anime.SetBool("IsAttack",false);
+            e_anime.SetBool("IsDamaged",true);
         }
         else if (_card is DefendCard && ReturnDefendCard(_card).Cost <= BattleManager.Instance.playerCurrentCosts)
         {

@@ -46,7 +46,7 @@ public class Player : Effect
 
     public void Defend(int _amount) // 使用防御
     {
-        if (BattleManager.Instance.turntimer > 3f && BattleManager.Instance.turntimer < 5f)
+        if (BattleManager.Instance.turntimer > 3f && BattleManager.Instance.turntimer < 4f)
         {
             defence = 0.0f;
             isRebound = true;

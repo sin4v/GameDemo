@@ -25,6 +25,8 @@ public class BattleManager : MonoSingleton<BattleManager>
     public float turntimer;
     
     public int playerCurrentCosts;
+
+    public Animator anime;
     
     public GameObject playerAttackHandsArea;
     public GameObject playerDefendHandsArea;
@@ -146,6 +148,8 @@ public class BattleManager : MonoSingleton<BattleManager>
             playerisacted = false;
             Enemy.Instance.enemyIsActed = false;
             Player.Instance.defence = 1.0f;
+            anime.SetBool("DefendOver", true);
+            anime.SetBool("IsRebound", false);
             GamePhase = GamePhase.turnStart;
             turnStart.Invoke();
         }

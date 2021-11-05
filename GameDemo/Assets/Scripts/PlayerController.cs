@@ -12,6 +12,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     public int s_num{get;set;}
     public int step;
     public bool isSkipTurn = false;
+    public Animator anime;
     
     public float zoomSize;
 
@@ -56,14 +57,21 @@ public class PlayerController : MonoSingleton<PlayerController>
         
         if (Input.GetKeyDown(KeyCode.A))
         {
+            
             AttackCardSwitch();
             ChosenCard();
+            anime.SetBool("Attacked",false);
+            anime.SetBool("IsDefend",false);
+            anime.SetBool("IsAttack",true);
         }
         
         if (Input.GetKeyDown(KeyCode.D))
         {
             DefendCardSwitch();
             ChosenCard();
+            anime.SetBool("DefendOver",false);
+            anime.SetBool("IsAttack",false);
+            anime.SetBool("IsDefend",true);
         }
         
         if (Input.GetKeyDown(KeyCode.S))

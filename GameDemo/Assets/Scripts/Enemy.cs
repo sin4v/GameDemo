@@ -17,12 +17,14 @@ public class Enemy : Effect
 
     public int id;
     public int attack;
-    public int chosen_id;
+    public int chosen_id = 0;
     public string enemyName;
     public int currentStunPoint;
     public int specialCumulativePoint;
     public bool enemyIsStun = false;
     public bool enemyIsActed = false;
+    public Animator anime;
+    public Animator e_anime;
     public List<string[]> moveList = new List<string[]>();
 
     public UnityEvent isStun = new UnityEvent();
@@ -120,6 +122,7 @@ public class Enemy : Effect
                 
                 yield return new WaitForSeconds(2.0f);
                 
+                e_anime.SetBool("IsAttack", true);
                 if (postion - Player.Instance.postion == 2)
                 {
                     Player.Instance.healthPoint -= Convert.ToInt32(_attack * Player.Instance.defence);
@@ -128,16 +131,19 @@ public class Enemy : Effect
                 {
                     Player.Instance.healthPoint -= Convert.ToInt32(_attack * Player.Instance.defence * 2);
                 }
-                Debug.Log(Player.Instance.isRebound);
 
                 if (Player.Instance.isRebound)
                 {
                     currentStunPoint -= attack;
                     Player.Instance.isRebound = false;
+                    e_anime.SetBool("IsDamaged", true);
+                    anime.SetBool("IsRebound", true);
+                    anime.SetBool("IsDefend", false);
                 }
 
                 enemyIsActed = true;
                 BattleManager.Instance.enemywillact = false;
+                anime.SetBool("DefendOver", true);
                 Debug.Log("怪物攻击");
                 break;
 
@@ -145,6 +151,7 @@ public class Enemy : Effect
                 BattleManager.Instance.enemywillact = true;
                 yield return new WaitForSeconds(2.0f);
 
+                e_anime.SetBool("IsAttack", true);
                 if (postion - Player.Instance.postion == 2)
                 {
                     Player.Instance.healthPoint -= Convert.ToInt32(_attack * Player.Instance.defence);
@@ -153,6 +160,9 @@ public class Enemy : Effect
                     {
                         currentStunPoint -= attack;
                         Player.Instance.isRebound = false;
+                        e_anime.SetBool("IsDamaged", true);
+                        anime.SetBool("IsRebound", true);
+                        anime.SetBool("IsDefend", false);
                     }
                 }
                 else
@@ -163,6 +173,7 @@ public class Enemy : Effect
 
                 enemyIsActed = true;
                 BattleManager.Instance.enemywillact = false;
+                anime.SetBool("DefendOver", true);
                 
                 break;     
         }
@@ -204,5 +215,11 @@ public class Enemy : Effect
     public override void Move(int _step) // 移动（没用）
     {
         throw new System.NotImplementedException();
+    }
+
+    public void AttackOver()
+    {
+        e_anime.SetBool("IsAttack", false);
+        e_anime.SetBool("IsDamaged", false);
     }
 }

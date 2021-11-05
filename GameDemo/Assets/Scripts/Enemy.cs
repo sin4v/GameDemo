@@ -143,7 +143,7 @@ public class Enemy : Effect
 
                 enemyIsActed = true;
                 BattleManager.Instance.enemywillact = false;
-                anime.SetBool("DefendOver", true);
+                anime.SetBool("IsDefend", false);
                 Debug.Log("怪物攻击");
                 break;
 
@@ -173,7 +173,7 @@ public class Enemy : Effect
 
                 enemyIsActed = true;
                 BattleManager.Instance.enemywillact = false;
-                anime.SetBool("DefendOver", true);
+                anime.SetBool("IsDefend", false);
                 
                 break;     
         }

@@ -148,7 +148,7 @@ public class BattleManager : MonoSingleton<BattleManager>
             playerisacted = false;
             Enemy.Instance.enemyIsActed = false;
             Player.Instance.defence = 1.0f;
-            anime.SetBool("DefendOver", true);
+            anime.SetBool("IsDefend", false);
             anime.SetBool("IsRebound", false);
             GamePhase = GamePhase.turnStart;
             turnStart.Invoke();
